@@ -8,7 +8,7 @@ defmodule PollerDal.Districts.District do
     timestamps()
   end
 
-  def changeset(%__MODULE__{} = struct, %{} = attrs) do
+  def changeset(%__MODULE__{} = struct, attrs) do
     struct
     |> cast(attrs, [:name])
     |> validate_required([:name])
