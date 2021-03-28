@@ -8,14 +8,14 @@ defmodule PollerDal.Districts do
     |> Repo.insert()
   end
 
-  def update_district(%District{} = district, attrs) do
-    district
+  def update_district(%District{} = struct, attrs) do
+    struct
     |> District.changeset(attrs)
     |> Repo.update()
   end
 
-  def delete_district(%District{} = district) do
-    Repo.delete(district)
+  def delete_district(%District{} = struct) do
+    Repo.delete(struct)
   end
 
   def list_districts, do: Repo.all(District)
