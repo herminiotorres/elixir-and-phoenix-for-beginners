@@ -22,7 +22,7 @@ defmodule PollerPhxWeb.Router do
   scope "/districts", PollerPhxWeb do
     pipe_through :browser
 
-    get "/", DistrictController, :index
+    resources "/", DistrictController, except: [:show]
   end
 
   # Other scopes may use custom stacks.
