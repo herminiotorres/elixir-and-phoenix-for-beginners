@@ -7,7 +7,8 @@ defmodule PollerPhxWeb.Endpoint do
   @session_options [
     store: :cookie,
     key: "_poller_phx_key",
-    signing_salt: "ikELBv5l"
+    signing_salt: "ikELBv5l",
+    max_age: 365 * 24 * 60 * 60
   ]
 
   socket "/socket", PollerPhxWeb.UserSocket,

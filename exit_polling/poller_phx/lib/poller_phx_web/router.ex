@@ -7,6 +7,7 @@ defmodule PollerPhxWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PollerPhxWeb.Plugs.Auth
   end
 
   pipeline :api do
@@ -19,8 +20,16 @@ defmodule PollerPhxWeb.Router do
     get "/", PageController, :index
   end
 
-  scope "/districts", PollerPhxWeb do
+  scope "/auth", PollerPhxWeb do
     pipe_through :browser
+
+    get "/login", AuthController, :new
+    post "/login", AuthController, :create
+    delete "/logout", AuthController, :delete
+  end
+
+  scope "/districts", PollerPhxWeb do
+    pipe_through [:browser, :valid_user, :admin_user]
 
     resources "/", DistrictController, except: [:show]
     resources "/:district_id/questions", QuestionController, except: [:show]
