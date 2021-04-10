@@ -11,14 +11,17 @@
       <tr>
         <td><%= district.name %></td>
         <td>
+          <%= link to: Routes.question_path(@conn, :index, district.id) do %>
+            <i class="fas fa-question"></i>
+          <% end %>
           <%= link to: Routes.district_path(@conn, :edit, district.id) do %>
             <i class="far fa-edit"></i>
           <% end %>
           <%= link to: Routes.district_path(@conn, :delete, district.id),
                 method: :delete,
                 data: [confirm: "Are you sure?"] do %>
-            <i class="fas fa-trash"></i>
-          <% end %>
+              <i class="fas fa-trash"></i>
+            <% end %>
         </td>
       </tr>
     <% end %>
